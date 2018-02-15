@@ -10,7 +10,7 @@ var users = require('./routes/users');
 var catalog = require('./routes/catalog');
 var app = express();
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb://mazari:karachi3129@ds155577.mlab.com:55577/local_library';
+var mongoDB = process.env.MONGODB_URI || 'mongodb://mazari:karachi3129@ds155577.mlab.com:55577/local_library';
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
