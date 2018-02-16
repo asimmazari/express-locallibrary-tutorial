@@ -8,7 +8,10 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var catalog = require('./routes/catalog');
+var compression = require('compression');
+var helmet = require('helmet');
 var app = express();
+app.use(helmet());
 var mongoose = require('mongoose');
 var mongoDB = process.env.MONGODB_URI || 'mongodb://mazari:karachi3129@ds155577.mlab.com:55577/local_library';
 mongoose.connect(mongoDB);
@@ -25,6 +28,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
